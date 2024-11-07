@@ -7,47 +7,47 @@ class environment:
             (0, 1): 'dirty',
             (1, 0): 'dirty'
         }
-        self.robot_position = (0, 0)  
+        self.agent_position = (0, 0)  
     
     # def perceive(self):
     #     pass
 
     def move(self, action):
-        if action == "up" and self.robot_position == (1, 0):
-            self.robot_position = (1, 0)
-        elif action == "up" and self.robot_position == (0, 0):
-            self.robot_position = (1, 0)
-        elif action == "up" and self.robot_position == (0, 1):
-            self.robot_position = (0, 1)
-        elif action == "left" and self.robot_position == (1, 0):
-            self.robot_position = (1, 0)
-        elif action == "left" and self.robot_position == (0, 0):
-            self.robot_position = (0, 0)
-        elif action == "left" and self.robot_position == (0, 1):
-            self.robot_position = (0, 0)
-        elif action == "right" and self.robot_position == (1, 0):
-            self.robot_position = (1, 0)
-        elif action == "right" and self.robot_position == (0, 0):
-            self.robot_position = (0, 1)
-        elif action == "right" and self.robot_position == (0, 1):
-            self.robot_position = (0, 1)
-        elif action == "down" and self.robot_position == (1, 0):
-            self.robot_position = (0, 0)
-        elif action == "down" and self.robot_position == (0, 0):
-            self.robot_position = (0, 0)
-        elif action == "down" and self.robot_position == (0, 1):
-            self.robot_position = (0, 1)
+        if action == "up" and self.agent_position == (1, 0):
+            self.agent_position = (1, 0)
+        elif action == "up" and self.agent_position == (0, 0):
+            self.agent_position = (1, 0)
+        elif action == "up" and self.agent_position == (0, 1):
+            self.agent_position = (0, 1)
+        elif action == "left" and self.agent_position == (1, 0):
+            self.agent_position = (1, 0)
+        elif action == "left" and self.agent_position == (0, 0):
+            self.agent_position = (0, 0)
+        elif action == "left" and self.agent_position == (0, 1):
+            self.agent_position = (0, 0)
+        elif action == "right" and self.agent_position == (1, 0):
+            self.agent_position = (1, 0)
+        elif action == "right" and self.agent_position == (0, 0):
+            self.agent_position = (0, 1)
+        elif action == "right" and self.agent_position == (0, 1):
+            self.agent_position = (0, 1)
+        elif action == "down" and self.agent_position == (1, 0):
+            self.agent_position = (0, 0)
+        elif action == "down" and self.agent_position == (0, 0):
+            self.agent_position = (0, 0)
+        elif action == "down" and self.agent_position == (0, 1):
+            self.agent_position = (0, 1)
 
 
     def vacuum(self):
-        if self.rooms[self.robot_position] == 'dirty':
-            self.rooms[self.robot_position] = 'clean'
+        if self.rooms[self.agent_position] == 'dirty':
+            self.rooms[self.agent_position] = 'clean'
 
 
 class env_fullyObs_deterministic_static(environment):
     def perceive(self):
         return {
-            'position': self.robot_position,
+            'position': self.agent_position,
             'cleanliness': self.rooms.copy()
         }
 
@@ -56,7 +56,7 @@ class env_fullyObs_deterministic_dynamic(environment):
     def perceive(self):
         """Fully observable and deterministic with rooms potentially becoming dirty again."""
         return {
-            'position': self.robot_position,
+            'position': self.agent_position,
             'cleanliness': self.rooms.copy()
         }
     
@@ -72,7 +72,7 @@ class env_fullyObs_deterministic_dynamic(environment):
 class env_fullyObs_stochasticInMove_static(environment):
     def perceive(self):
         return {
-            'position': self.robot_position,
+            'position': self.agent_position,
             'cleanliness': self.rooms.copy()
         }
     
@@ -84,7 +84,7 @@ class env_fullyObs_stochasticInMove_static(environment):
 class env_fullyObs_stochasticInMove_dynamic(environment):
     def perceive(self):
         return {
-            'position': self.robot_position,
+            'position': self.agent_position,
             'cleanliness': self.rooms.copy()
         }
     
@@ -101,7 +101,7 @@ class env_fullyObs_stochasticInMove_dynamic(environment):
 class env_fullyObs_stochasticInVac_static(environment):
     def perceive(self):
         return {
-            'position': self.robot_position,
+            'position': self.agent_position,
             'cleanliness': self.rooms.copy()
         }
     
@@ -113,7 +113,7 @@ class env_fullyObs_stochasticInVac_static(environment):
 class env_fullyObs_stochasticInVac_dynamic(environment):
     def perceive(self):
         return {
-            'position': self.robot_position,
+            'position': self.agent_position,
             'cleanliness': self.rooms.copy()
         }
     
@@ -203,14 +203,14 @@ class env_noPositionSensor_stochasticInVac_dynamic(environment):
 class env_noCleanSensor_deterministic_static(environment):
     def perceive(self):
         return {
-            'position': self.robot_position
+            'position': self.agent_position
         }
 
 
 class env_noCleanSensor_deterministic_dynamic(environment):
     def perceive(self):
         return {
-            'position': self.robot_position
+            'position': self.agent_position
         }
 
     def dynamic_dirtying(self):
@@ -222,7 +222,7 @@ class env_noCleanSensor_deterministic_dynamic(environment):
 class env_noCleanSensor_stochasticInMove_static(environment):
     def perceive(self):
         return {
-            'position': self.robot_position
+            'position': self.agent_position
         }
 
     def move(self, action):
@@ -233,7 +233,7 @@ class env_noCleanSensor_stochasticInMove_static(environment):
 class env_noCleanSensor_stochasticInMove_dynamic(environment):
     def perceive(self):
         return {
-            'position': self.robot_position
+            'position': self.agent_position
         }
 
     def move(self, action):
@@ -249,7 +249,7 @@ class env_noCleanSensor_stochasticInMove_dynamic(environment):
 class env_noCleanSensor_stochasticInVac_static(environment):
     def perceive(self):
         return {
-            'position': self.robot_position
+            'position': self.agent_position
         }
 
     def vacuum(self):
@@ -260,7 +260,7 @@ class env_noCleanSensor_stochasticInVac_static(environment):
 class env_noCleanSensor_stochasticInVac_dynamic(environment):
     def perceive(self):
         return {
-            'position': self.robot_position
+            'position': self.agent_position
         }
 
     def vacuum(self):
