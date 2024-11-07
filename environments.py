@@ -1,6 +1,6 @@
 import random
 
-class Environment:
+class environment:
     def __init__(self):
         self.rooms = {
             (0, 0): 'dirty',
@@ -44,7 +44,7 @@ class Environment:
             self.rooms[self.robot_position] = 'clean'
 
 
-class EnvFullyObsDeterministicStatic(Environment):
+class env_fullyObs_deterministic_static(environment):
     def perceive(self):
         return {
             'position': self.robot_position,
@@ -52,7 +52,7 @@ class EnvFullyObsDeterministicStatic(Environment):
         }
 
 
-class EnvFullyObsDeterministicDynamic(Environment):
+class env_fullyObs_deterministic_dynamic(environment):
     def perceive(self):
         """Fully observable and deterministic with rooms potentially becoming dirty again."""
         return {
@@ -69,7 +69,7 @@ class EnvFullyObsDeterministicDynamic(Environment):
                 self.rooms[room] = 'dirty'
 
 
-class EnvFullyObsStochasticInMoveStatic(Environment):
+class env_fullyObs_stochasticInMove_static(environment):
     def perceive(self):
         return {
             'position': self.robot_position,
@@ -81,7 +81,7 @@ class EnvFullyObsStochasticInMoveStatic(Environment):
             super().move(action)
 
 
-class EnvFullyObsStochasticInMoveDynamic(Environment):
+class env_fullyObs_stochasticInMove_dynamic(environment):
     def perceive(self):
         return {
             'position': self.robot_position,
@@ -98,7 +98,7 @@ class EnvFullyObsStochasticInMoveDynamic(Environment):
                 self.rooms[room] = 'dirty'
 
 
-class EnvFullyObsStochasticInVacStatic(Environment):
+class env_fullyObs_stochasticInVac_static(environment):
     def perceive(self):
         return {
             'position': self.robot_position,
@@ -110,7 +110,7 @@ class EnvFullyObsStochasticInVacStatic(Environment):
             super().vacuum()
 
 
-class EnvFullyObsStochasticInVacDynamic(Environment):
+class env_fullyObs_stochasticInVac_dynamic(environment):
     def perceive(self):
         return {
             'position': self.robot_position,
@@ -127,14 +127,14 @@ class EnvFullyObsStochasticInVacDynamic(Environment):
                 self.rooms[room] = 'dirty'
 
 
-class EnvNoPositionSensorDeterministicStatic(Environment):
+class env_noPositionSensor_deterministic_static(environment):
     def perceive(self):
         return {
             'cleanliness': self.rooms.copy()
         }
 
 
-class EnvNoPositionSensorDeterministicDynamic(Environment):
+class env_noPositionSensor_deterministic_dynamic(environment):
     def perceive(self):
         return {
             'cleanliness': self.rooms.copy()
@@ -146,7 +146,7 @@ class EnvNoPositionSensorDeterministicDynamic(Environment):
                 self.rooms[room] = 'dirty'
 
 
-class EnvNoPositionSensorStochasticInMoveStatic(Environment):
+class env_noPositionSensor_stochasticInMove_static(environment):
     def perceive(self):
         return {
             'cleanliness': self.rooms.copy()
@@ -157,7 +157,7 @@ class EnvNoPositionSensorStochasticInMoveStatic(Environment):
             super().move(action)
 
 
-class EnvNoPositionSensorStochasticInMoveDynamic(Environment):
+class env_noPositionSensor_stochasticInMove_dynamic(environment):
     def perceive(self):
         return {
             'cleanliness': self.rooms.copy()
@@ -173,7 +173,7 @@ class EnvNoPositionSensorStochasticInMoveDynamic(Environment):
                 self.rooms[room] = 'dirty'
 
 
-class EnvNoPositionSensorStochasticInVacStatic(Environment):
+class env_noPositionSensor_stochasticInVac_static(environment):
     def perceive(self):
         return {
             'cleanliness': self.rooms.copy()
@@ -184,7 +184,7 @@ class EnvNoPositionSensorStochasticInVacStatic(Environment):
             super().vacuum()
 
 
-class EnvNoPositionSensorStochasticInVacDynamic(Environment):
+class env_noPositionSensor_stochasticInVac_dynamic(environment):
     def perceive(self):
         return {
             'cleanliness': self.rooms.copy()
@@ -200,14 +200,14 @@ class EnvNoPositionSensorStochasticInVacDynamic(Environment):
                 self.rooms[room] = 'dirty'
 
 
-class EnvNoCleanSensorDeterministicStatic(Environment):
+class env_noCleanSensor_deterministic_static(environment):
     def perceive(self):
         return {
             'position': self.robot_position
         }
 
 
-class EnvNoCleanSensorDeterministicDynamic(Environment):
+class env_noCleanSensor_deterministic_dynamic(environment):
     def perceive(self):
         return {
             'position': self.robot_position
@@ -219,7 +219,7 @@ class EnvNoCleanSensorDeterministicDynamic(Environment):
                 self.rooms[room] = 'dirty'
 
 
-class EnvNoCleanSensorStochasticInMoveStatic(Environment):
+class env_noCleanSensor_stochasticInMove_static(environment):
     def perceive(self):
         return {
             'position': self.robot_position
@@ -230,7 +230,7 @@ class EnvNoCleanSensorStochasticInMoveStatic(Environment):
             super().move(action)
 
 
-class EnvNoCleanSensorStochasticInMoveDynamic(Environment):
+class env_noCleanSensor_stochasticInMove_dynamic(environment):
     def perceive(self):
         return {
             'position': self.robot_position
@@ -246,7 +246,7 @@ class EnvNoCleanSensorStochasticInMoveDynamic(Environment):
                 self.rooms[room] = 'dirty'
 
 
-class EnvNoCleanSensorStochasticInVacStatic(Environment):
+class env_noCleanSensor_stochasticInVac_static(environment):
     def perceive(self):
         return {
             'position': self.robot_position
@@ -257,7 +257,7 @@ class EnvNoCleanSensorStochasticInVacStatic(Environment):
             super().vacuum()
 
 
-class EnvNoCleanSensorStochasticInVacDynamic(Environment):
+class env_noCleanSensor_stochasticInVac_dynamic(environment):
     def perceive(self):
         return {
             'position': self.robot_position
