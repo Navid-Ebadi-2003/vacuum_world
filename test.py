@@ -41,11 +41,21 @@ import agents
 # print("\n")
 
 
-print("-------fullyObs_stochasticInVac_static-------")
+# print("-------fullyObs_stochasticInVac_static-------")
+
+# #                                     clean or dirty  (0,0),   (1,0),   (0,1)
+# env = environments.env_fullyObs_stochasticInVac_static("dirty", "clean", "dirty")
+# agent = agents.ag_fullyObs_stochasticInVac_static(env)
+
+# agent.run()
+# print("\n")
+
+
+print("-------fullyObs_stochasticInVac_dynamic-------")
 
 #                                     clean or dirty  (0,0),   (1,0),   (0,1)
-env = environments.env_fullyObs_stochasticInVac_static("dirty", "clean", "dirty")
-agent = agents.ag_fullyObs_stochasticInVac_static(env)
+env = environments.env_fullyObs_stochasticInVac_dynamic("dirty", "clean", "dirty")
+agent = agents.ag_fullyObs_stochasticInVac_dynamic(env)
 
 agent.run()
 print("\n")
