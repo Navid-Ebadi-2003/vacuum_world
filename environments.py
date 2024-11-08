@@ -1,43 +1,37 @@
 import random
 
+
 class environment:
-    def __init__(self):
+    def __init__(self, R0, R1, R2):
         self.rooms = {
-            (0, 0): 'dirty',
-            (0, 1): 'dirty',
-            (1, 0): 'dirty'
+            (0, 0): R0,
+            (1, 0): R1,
+            (0, 1): R2
         }
-        self.agent_position = (0, 0)  
-    
+        self.agent_position = (0, 0)
+
     # def perceive(self):
     #     pass
 
     def move(self, action):
-        if action == "up" and self.agent_position == (1, 0):
-            self.agent_position = (1, 0)
-        elif action == "up" and self.agent_position == (0, 0):
-            self.agent_position = (1, 0)
-        elif action == "up" and self.agent_position == (0, 1):
+        if action == "up" and self.agent_position == (0, 0):
             self.agent_position = (0, 1)
+            print("move to up")
+            return True
         elif action == "left" and self.agent_position == (1, 0):
-            self.agent_position = (1, 0)
-        elif action == "left" and self.agent_position == (0, 0):
             self.agent_position = (0, 0)
-        elif action == "left" and self.agent_position == (0, 1):
-            self.agent_position = (0, 0)
-        elif action == "right" and self.agent_position == (1, 0):
-            self.agent_position = (1, 0)
+            print("move to left")
+            return True
         elif action == "right" and self.agent_position == (0, 0):
-            self.agent_position = (0, 1)
-        elif action == "right" and self.agent_position == (0, 1):
-            self.agent_position = (0, 1)
-        elif action == "down" and self.agent_position == (1, 0):
-            self.agent_position = (0, 0)
-        elif action == "down" and self.agent_position == (0, 0):
-            self.agent_position = (0, 0)
+            self.agent_position = (1, 0)
+            print("move to right")
+            return True
         elif action == "down" and self.agent_position == (0, 1):
-            self.agent_position = (0, 1)
-
+            self.agent_position = (0, 0)
+            print("move to down")
+            return True
+        else:
+            return False
 
     def vacuum(self):
         if self.rooms[self.agent_position] == 'dirty':
@@ -59,13 +53,13 @@ class env_fullyObs_deterministic_dynamic(environment):
             'position': self.agent_position,
             'cleanliness': self.rooms.copy()
         }
-    
+
     def move(self, action):
         super().move(action)
-    
+
     def dynamic_dirtying(self):
         for room in self.rooms:
-            if random.random() < 0.2:  
+            if random.random() < 0.2:
                 self.rooms[room] = 'dirty'
 
 
@@ -75,9 +69,9 @@ class env_fullyObs_stochasticInMove_static(environment):
             'position': self.agent_position,
             'cleanliness': self.rooms.copy()
         }
-    
+
     def move(self, action):
-        if random.random() > 0.2:  
+        if random.random() > 0.2:
             super().move(action)
 
 
@@ -87,11 +81,11 @@ class env_fullyObs_stochasticInMove_dynamic(environment):
             'position': self.agent_position,
             'cleanliness': self.rooms.copy()
         }
-    
+
     def move(self, action):
-        if random.random() > 0.2:  
+        if random.random() > 0.2:
             super().move(action)
-    
+
     def dynamic_dirtying(self):
         for room in self.rooms:
             if random.random() < 0.2:
@@ -104,9 +98,9 @@ class env_fullyObs_stochasticInVac_static(environment):
             'position': self.agent_position,
             'cleanliness': self.rooms.copy()
         }
-    
+
     def vacuum(self):
-        if random.random() > 0.2:  
+        if random.random() > 0.2:
             super().vacuum()
 
 
@@ -116,11 +110,11 @@ class env_fullyObs_stochasticInVac_dynamic(environment):
             'position': self.agent_position,
             'cleanliness': self.rooms.copy()
         }
-    
+
     def vacuum(self):
-        if random.random() > 0.2:  
+        if random.random() > 0.2:
             super().vacuum()
-    
+
     def dynamic_dirtying(self):
         for room in self.rooms:
             if random.random() < 0.2:
@@ -139,7 +133,7 @@ class env_noPositionSensor_deterministic_dynamic(environment):
         return {
             'cleanliness': self.rooms.copy()
         }
-    
+
     def dynamic_dirtying(self):
         for room in self.rooms:
             if random.random() < 0.2:
@@ -153,7 +147,7 @@ class env_noPositionSensor_stochasticInMove_static(environment):
         }
 
     def move(self, action):
-        if random.random() > 0.2:  
+        if random.random() > 0.2:
             super().move(action)
 
 
@@ -164,12 +158,12 @@ class env_noPositionSensor_stochasticInMove_dynamic(environment):
         }
 
     def move(self, action):
-        if random.random() > 0.2:  
+        if random.random() > 0.2:
             super().move(action)
 
     def dynamic_dirtying(self):
         for room in self.rooms:
-            if random.random() < 0.2:  
+            if random.random() < 0.2:
                 self.rooms[room] = 'dirty'
 
 
@@ -180,7 +174,7 @@ class env_noPositionSensor_stochasticInVac_static(environment):
         }
 
     def vacuum(self):
-        if random.random() > 0.2:  
+        if random.random() > 0.2:
             super().vacuum()
 
 
@@ -191,12 +185,12 @@ class env_noPositionSensor_stochasticInVac_dynamic(environment):
         }
 
     def vacuum(self):
-        if random.random() > 0.2:  
+        if random.random() > 0.2:
             super().vacuum()
 
     def dynamic_dirtying(self):
         for room in self.rooms:
-            if random.random() < 0.2:  
+            if random.random() < 0.2:
                 self.rooms[room] = 'dirty'
 
 
@@ -215,7 +209,7 @@ class env_noCleanSensor_deterministic_dynamic(environment):
 
     def dynamic_dirtying(self):
         for room in self.rooms:
-            if random.random() < 0.2:  
+            if random.random() < 0.2:
                 self.rooms[room] = 'dirty'
 
 
@@ -226,7 +220,7 @@ class env_noCleanSensor_stochasticInMove_static(environment):
         }
 
     def move(self, action):
-        if random.random() > 0.2:  
+        if random.random() > 0.2:
             super().move(action)
 
 
@@ -237,12 +231,12 @@ class env_noCleanSensor_stochasticInMove_dynamic(environment):
         }
 
     def move(self, action):
-        if random.random() > 0.2: 
+        if random.random() > 0.2:
             super().move(action)
 
     def dynamic_dirtying(self):
         for room in self.rooms:
-            if random.random() < 0.2:  
+            if random.random() < 0.2:
                 self.rooms[room] = 'dirty'
 
 
@@ -253,7 +247,7 @@ class env_noCleanSensor_stochasticInVac_static(environment):
         }
 
     def vacuum(self):
-        if random.random() > 0.2:  
+        if random.random() > 0.2:
             super().vacuum()
 
 
@@ -264,10 +258,10 @@ class env_noCleanSensor_stochasticInVac_dynamic(environment):
         }
 
     def vacuum(self):
-        if random.random() > 0.2: 
+        if random.random() > 0.2:
             super().vacuum()
 
     def dynamic_dirtying(self):
         for room in self.rooms:
-            if random.random() < 0.2:  
+            if random.random() < 0.2:
                 self.rooms[room] = 'dirty'

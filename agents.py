@@ -8,7 +8,7 @@ class agent:
         self.f2 = 0  # number of failed moves
         self.f3 = 0  # number of suctions
         self.f4 = 0  # number of commands of suctions
-        self.f5 = 0  # number of dirty rooms
+        self.f5 = list(self.environment.rooms.values()).count("dirty")  # number of dirty rooms
 
     def move_left(self):
         self.f1 += 1
@@ -29,6 +29,7 @@ class agent:
     def clean(self):
         self.environment.vacuum()
         self.f3 += 1
+        print("suction don")
 
     def status(self):
         print(f"f1: {self.f1} | f2: {self.f2} | f3: {
@@ -37,30 +38,37 @@ class agent:
 
 class ag_fullyObs_deterministic_static(agent):
     def run(self):
-        while all(self.environment.rooms.values()) != "clean":
+
+        self.status()
+
+        while not all(value == "clean" for value in self.environment.rooms.values()):
 
             perception = self.environment.perceive()
             position = perception['position']
-            cleanliness = position["cleanliness"]
+            cleanliness = perception["cleanliness"]
 
-            self.f5 = list(cleanliness.values()).count("dirty")
+            num_dr=list(cleanliness.values()).count("dirty")
 
             if cleanliness[position] == 'dirty':
                 self.clean()
                 self.f4 += 1
+                num_dr -=1
+
 
             if position == (0, 0) and cleanliness[(1, 0)] == "dirty":
                 self.environment.move(self.move_right())
             elif position == (0, 0) and cleanliness[(0, 1)] == "dirty":
                 self.environment.move(self.move_up())
-            elif position == (1, 0):
+            elif position == (1, 0) and num_dr > 0:
                 self.environment.move(self.move_left())
-            elif position == (0, 1):
+            elif position == (0, 1) and num_dr > 0:
                 self.environment.move(self.move_down())
 
-        else:
-            print("---FINISH---")
+            self.f5 = list(self.environment.rooms.values()).count("dirty")
             self.status()
+
+        else:
+            print("----------FINISH-----------")
 
 
 class ag_fullyObs_deterministic_dynamic(agent):
