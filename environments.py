@@ -36,6 +36,9 @@ class environment:
     def vacuum(self):
         if self.rooms[self.agent_position] == 'dirty':
             self.rooms[self.agent_position] = 'clean'
+            return True
+        else:
+            return False
 
 
 class env_fullyObs_deterministic_static(environment):
@@ -196,11 +199,26 @@ class env_noPositionSensor_stochasticInVac_dynamic(environment):
                 self.rooms[room] = 'dirty'
 
 
+
+
+
+
+
+
+
 class env_noCleanSensor_deterministic_static(environment):
     def perceive(self):
         return {
             'position': self.agent_position
         }
+
+
+
+
+
+
+
+
 
 
 class env_noCleanSensor_deterministic_dynamic(environment):
