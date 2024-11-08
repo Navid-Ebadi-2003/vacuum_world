@@ -71,10 +71,6 @@ class env_fullyObs_stochasticInMove_static(environment):
             'cleanliness': self.rooms[self.agent_position]
         }
 
-    def move(self, action):
-        if random.random() > 0.2:
-            super().move(action)
-
 
 class env_fullyObs_stochasticInMove_dynamic(environment):
     def perceive(self):
