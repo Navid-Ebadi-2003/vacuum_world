@@ -229,26 +229,22 @@ class env_noCleanSensor_deterministic_dynamic(environment):
         return perception
 
 
-
-
-
-
-
-
-
-
-
-
-
 class env_noCleanSensor_stochasticInMove_static(environment):
     def perceive(self):
         return {
             'position': self.agent_position
         }
 
-    def move(self, action):
-        if random.random() > 0.2:
-            super().move(action)
+
+
+
+
+
+
+
+
+
+
 
 
 class env_noCleanSensor_stochasticInMove_dynamic(environment):
