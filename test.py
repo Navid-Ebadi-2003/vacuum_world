@@ -81,11 +81,21 @@ import agents
 # print("\n")
 
 
-print("-------noCleanSensor_stochasticInMove_static-------")
+# print("-------noCleanSensor_stochasticInMove_static-------")
+
+# #                                     clean or dirty  (0,0),   (1,0),   (0,1)
+# env = environments.env_noCleanSensor_stochasticInMove_static("dirty", "clean", "dirty")
+# agent = agents.ag_noCleanSensor_stochasticInMove_static(env)
+
+# agent.run()
+# print("\n")
+
+
+print("-------noCleanSensor_stochasticInMove_dynamic-------")
 
 #                                     clean or dirty  (0,0),   (1,0),   (0,1)
-env = environments.env_noCleanSensor_stochasticInMove_static("dirty", "clean", "dirty")
-agent = agents.ag_noCleanSensor_stochasticInMove_static(env)
+env = environments.env_noCleanSensor_stochasticInMove_dynamic("dirty", "clean", "dirty")
+agent = agents.ag_noCleanSensor_stochasticInMove_dynamic(env)
 
 agent.run()
 print("\n")
