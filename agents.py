@@ -28,6 +28,7 @@ class agent:
 
     def clean(self):
         self.environment.vacuum()
+        self.f3 += 1
 
     def status(self):
         print(f"f1: {self.f1} | f2: {self.f2} | f3: {
@@ -46,7 +47,6 @@ class ag_fullyObs_deterministic_static(agent):
 
             if cleanliness[position] == 'dirty':
                 self.clean()
-                self.f3 += 1
                 self.f4 += 1
 
             if position == (0, 0) and cleanliness[(1, 0)] == "dirty":
