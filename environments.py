@@ -89,16 +89,6 @@ class env_fullyObs_stochasticInMove_dynamic(environment):
         return perception
 
 
-
-
-
-
-
-
-
-
-
-
 class env_fullyObs_stochasticInVac_static(environment):
     def perceive(self):
         return {
@@ -106,9 +96,13 @@ class env_fullyObs_stochasticInVac_static(environment):
             'cleanliness': self.rooms[self.agent_position]
         }
 
-    def vacuum(self):
-        if random.random() > 0.2:
-            super().vacuum()
+
+
+
+
+
+
+
 
 
 class env_fullyObs_stochasticInVac_dynamic(environment):
