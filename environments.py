@@ -42,32 +42,33 @@ class env_fullyObs_deterministic_static(environment):
     def perceive(self):
         return {
             'position': self.agent_position,
-            'cleanliness': self.rooms.copy()
+            'cleanliness': self.rooms[self.agent_position]
         }
 
 
 class env_fullyObs_deterministic_dynamic(environment):
-    def perceive(self):
-        """Fully observable and deterministic with rooms potentially becoming dirty again."""
-        return {
-            'position': self.agent_position,
-            'cleanliness': self.rooms.copy()
-        }
-
-    def move(self, action):
-        super().move(action)
 
     def dynamic_dirtying(self):
         for room in self.rooms:
             if random.random() < 0.2:
                 self.rooms[room] = 'dirty'
 
+    def perceive(self):
+
+        perception = {
+            'position': self.agent_position,
+            'cleanliness': self.rooms[self.agent_position]
+        }
+
+        self.dynamic_dirtying()
+        return perception
+
 
 class env_fullyObs_stochasticInMove_static(environment):
     def perceive(self):
         return {
             'position': self.agent_position,
-            'cleanliness': self.rooms.copy()
+            'cleanliness': self.rooms[self.agent_position]
         }
 
     def move(self, action):
@@ -79,7 +80,7 @@ class env_fullyObs_stochasticInMove_dynamic(environment):
     def perceive(self):
         return {
             'position': self.agent_position,
-            'cleanliness': self.rooms.copy()
+            'cleanliness': self.rooms[self.agent_position]
         }
 
     def move(self, action):
@@ -96,7 +97,7 @@ class env_fullyObs_stochasticInVac_static(environment):
     def perceive(self):
         return {
             'position': self.agent_position,
-            'cleanliness': self.rooms.copy()
+            'cleanliness': self.rooms[self.agent_position]
         }
 
     def vacuum(self):
@@ -108,7 +109,7 @@ class env_fullyObs_stochasticInVac_dynamic(environment):
     def perceive(self):
         return {
             'position': self.agent_position,
-            'cleanliness': self.rooms.copy()
+            'cleanliness': self.rooms[self.agent_position]
         }
 
     def vacuum(self):
@@ -124,14 +125,14 @@ class env_fullyObs_stochasticInVac_dynamic(environment):
 class env_noPositionSensor_deterministic_static(environment):
     def perceive(self):
         return {
-            'cleanliness': self.rooms.copy()
+            'cleanliness': self.rooms[self.agent_position]
         }
 
 
 class env_noPositionSensor_deterministic_dynamic(environment):
     def perceive(self):
         return {
-            'cleanliness': self.rooms.copy()
+            'cleanliness': self.rooms[self.agent_position]
         }
 
     def dynamic_dirtying(self):
@@ -143,7 +144,7 @@ class env_noPositionSensor_deterministic_dynamic(environment):
 class env_noPositionSensor_stochasticInMove_static(environment):
     def perceive(self):
         return {
-            'cleanliness': self.rooms.copy()
+            'cleanliness': self.rooms[self.agent_position]
         }
 
     def move(self, action):
@@ -154,7 +155,7 @@ class env_noPositionSensor_stochasticInMove_static(environment):
 class env_noPositionSensor_stochasticInMove_dynamic(environment):
     def perceive(self):
         return {
-            'cleanliness': self.rooms.copy()
+            'cleanliness': self.rooms[self.agent_position]
         }
 
     def move(self, action):
@@ -170,7 +171,7 @@ class env_noPositionSensor_stochasticInMove_dynamic(environment):
 class env_noPositionSensor_stochasticInVac_static(environment):
     def perceive(self):
         return {
-            'cleanliness': self.rooms.copy()
+            'cleanliness': self.rooms[self.agent_position]
         }
 
     def vacuum(self):
@@ -181,7 +182,7 @@ class env_noPositionSensor_stochasticInVac_static(environment):
 class env_noPositionSensor_stochasticInVac_dynamic(environment):
     def perceive(self):
         return {
-            'cleanliness': self.rooms.copy()
+            'cleanliness': self.rooms[self.agent_position]
         }
 
     def vacuum(self):

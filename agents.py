@@ -40,6 +40,7 @@ class ag_fullyObs_deterministic_static(agent):
     def run(self):
 
         self.status()
+        last_move = None
 
         while not all(value == "clean" for value in self.environment.rooms.values()):
 
@@ -47,22 +48,19 @@ class ag_fullyObs_deterministic_static(agent):
             position = perception['position']
             cleanliness = perception["cleanliness"]
 
-            num_dr=list(cleanliness.values()).count("dirty")
-
-            if cleanliness[position] == 'dirty':
+            if cleanliness == 'dirty':
                 self.clean()
                 self.f4 += 1
-                num_dr -=1
 
-
-            if position == (0, 0) and cleanliness[(1, 0)] == "dirty":
-                self.environment.move(self.move_right())
-            elif position == (0, 0) and cleanliness[(0, 1)] == "dirty":
-                self.environment.move(self.move_up())
-            elif position == (1, 0) and num_dr > 0:
-                self.environment.move(self.move_left())
-            elif position == (0, 1) and num_dr > 0:
-                self.environment.move(self.move_down())
+            if position == (0, 0) and last_move != "left":
+                last_move = self.move_right()
+                self.environment.move(last_move)
+            elif position == (0,0) :
+                last_move = self.move_up()
+                self.environment.move(last_move)
+            elif position == (1, 0) :
+                last_move = self.move_left()
+                self.environment.move(last_move)
 
             self.f5 = list(self.environment.rooms.values()).count("dirty")
             self.status()
