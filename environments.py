@@ -213,24 +213,31 @@ class env_noCleanSensor_deterministic_static(environment):
         }
 
 
-
-
-
-
-
-
-
-
 class env_noCleanSensor_deterministic_dynamic(environment):
-    def perceive(self):
-        return {
-            'position': self.agent_position
-        }
-
     def dynamic_dirtying(self):
         for room in self.rooms:
             if random.random() < 0.2:
                 self.rooms[room] = 'dirty'
+
+    def perceive(self):
+
+        perception = {
+            'position': self.agent_position,
+        }
+
+        self.dynamic_dirtying()
+        return perception
+
+
+
+
+
+
+
+
+
+
+
 
 
 class env_noCleanSensor_stochasticInMove_static(environment):

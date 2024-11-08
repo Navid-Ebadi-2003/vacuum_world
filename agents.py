@@ -457,7 +457,47 @@ class ag_noCleanSensor_deterministic_static(agent):
 
 
 class ag_noCleanSensor_deterministic_dynamic(agent):
-    pass
+    def run(self):
+
+        self.status()
+        last_move = None
+
+        while not all(value == "clean" for value in self.environment.rooms.values()):
+
+            perception = self.environment.perceive()
+            position = perception['position']
+
+            result = self.clean()
+            if result :
+                self.f4 += 1
+
+            if all(value == "clean" for value in self.environment.rooms.values()):
+                self.f5 = list(
+                    self.environment.rooms.values()).count("dirty")
+                self.status()
+                print("----------FINISH-----------")
+                break
+
+            ran_chose = random.randint(1, 2)
+
+            if position == (0, 0) and ran_chose == 1:
+                last_move = self.move_right()
+                self.environment.move(last_move)
+            elif position == (0, 0) and ran_chose == 2:
+                last_move = self.move_up()
+                self.environment.move(last_move)
+            elif position == (1, 0):
+                last_move = self.move_left()
+                self.environment.move(last_move)
+            elif position == (0, 1):
+                last_move = self.move_down()
+                self.environment.move(last_move)
+
+            self.f5 = list(self.environment.rooms.values()).count("dirty")
+            self.status()
+
+        else:
+            print("----------FINISH-----------")
 
 
 class ag_noCleanSensor_stochasticInMove_static(agent):
