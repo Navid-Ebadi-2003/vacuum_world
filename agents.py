@@ -420,7 +420,57 @@ class ag_noPositionSensor_deterministic_static(agent):
 
 
 class ag_noPositionSensor_deterministic_dynamic(agent):
-    pass
+    
+    def ran_act(self):
+        x = random.randint(1, 4)
+        if x == 1:
+            return "up"
+        elif x == 2:
+            return "down"
+        elif x == 3:
+            return "right"
+        else:
+            return "left"
+
+    def run(self):
+
+        self.status()
+        mistake = [None]
+
+        while not all(value == "clean" for value in self.environment.rooms.values()):
+
+            perception = self.environment.perceive()
+            cleanliness = perception["cleanliness"]
+
+            if cleanliness == 'dirty':
+                self.clean()
+                self.f4 += 1
+                if all(value == "clean" for value in self.environment.rooms.values()):
+                    self.f5 = list(
+                        self.environment.rooms.values()).count("dirty")
+                    self.status()
+                    print("----------FINISH-----------")
+                    break
+
+            movement = None
+            while (movement in mistake ):
+                movement = self.ran_act()
+
+            success = self.environment.move(movement)
+            self.f1 += 1
+            if success :
+                mistake=[None]
+            else :
+                self.f2 += 1
+                mistake.append(movement)
+                print("hit the wall")
+                print(f"{movement} was mistake")
+
+            self.f5 = list(self.environment.rooms.values()).count("dirty")
+            self.status()
+
+        else:
+            print("----------FINISH-----------")
 
 
 class ag_noPositionSensor_stochasticInMove_static(agent):
