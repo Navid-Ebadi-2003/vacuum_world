@@ -133,6 +133,15 @@ class env_noPositionSensor_deterministic_static(environment):
         }
 
 
+
+
+
+
+
+
+
+
+
 class env_noPositionSensor_deterministic_dynamic(environment):
     def perceive(self):
         return {
