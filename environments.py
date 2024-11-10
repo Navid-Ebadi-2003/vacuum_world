@@ -166,54 +166,46 @@ class env_noPositionSensor_stochasticInMove_static(environment):
             'cleanliness': self.rooms[self.agent_position]
         }
 
-    def move(self, action):
-        if random.random() > 0.2:
-            super().move(action)
-
-
 class env_noPositionSensor_stochasticInMove_dynamic(environment):
-    def perceive(self):
-        return {
-            'cleanliness': self.rooms[self.agent_position]
-        }
-
-    def move(self, action):
-        if random.random() > 0.2:
-            super().move(action)
-
     def dynamic_dirtying(self):
         for room in self.rooms:
             if random.random() < 0.2:
                 self.rooms[room] = 'dirty'
+
+    def perceive(self):
+
+        perception = {
+            'position': self.agent_position,
+            'cleanliness': self.rooms[self.agent_position]
+        }
+
+        self.dynamic_dirtying()
+        return perception
+
+
 
 
 class env_noPositionSensor_stochasticInVac_static(environment):
-    def perceive(self):
+   def perceive(self):
         return {
             'cleanliness': self.rooms[self.agent_position]
         }
-
-    def vacuum(self):
-        if random.random() > 0.2:
-            super().vacuum()
-
-
+   
+   
 class env_noPositionSensor_stochasticInVac_dynamic(environment):
-    def perceive(self):
-        return {
-            'cleanliness': self.rooms[self.agent_position]
-        }
-
-    def vacuum(self):
-        if random.random() > 0.2:
-            super().vacuum()
-
     def dynamic_dirtying(self):
         for room in self.rooms:
             if random.random() < 0.2:
                 self.rooms[room] = 'dirty'
 
+    def perceive(self):
 
+        perception = {
+            'cleanliness': self.rooms[self.agent_position]
+        }
+
+        self.dynamic_dirtying()
+        return perception
 
 
 
