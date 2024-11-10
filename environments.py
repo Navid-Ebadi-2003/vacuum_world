@@ -40,6 +40,7 @@ class environment:
         else:
             return False
 
+
 class env_fullyObs_deterministic_static(environment):
     def perceive(self):
         return {
@@ -116,15 +117,6 @@ class env_fullyObs_stochasticInVac_dynamic(environment):
         return perception
 
 
-
-
-
-
-
-
-
-
-
 class env_noPositionSensor_deterministic_static(environment):
     def perceive(self):
         return {
@@ -148,20 +140,12 @@ class env_noPositionSensor_deterministic_dynamic(environment):
         return perception
 
 
-
-
-
-
-
-
-
-
-
 class env_noPositionSensor_stochasticInMove_static(environment):
     def perceive(self):
         return {
             'cleanliness': self.rooms[self.agent_position]
         }
+
 
 class env_noPositionSensor_stochasticInMove_dynamic(environment):
     def dynamic_dirtying(self):
@@ -179,14 +163,12 @@ class env_noPositionSensor_stochasticInMove_dynamic(environment):
         return perception
 
 
-
-
 class env_noPositionSensor_stochasticInVac_static(environment):
-   def perceive(self):
+    def perceive(self):
         return {
             'cleanliness': self.rooms[self.agent_position]
         }
-   
+
 
 class env_noPositionSensor_stochasticInVac_dynamic(environment):
     def dynamic_dirtying(self):
@@ -202,11 +184,6 @@ class env_noPositionSensor_stochasticInVac_dynamic(environment):
 
         self.dynamic_dirtying()
         return perception
-
-
-
-
-
 
 
 class env_noCleanSensor_deterministic_static(environment):
