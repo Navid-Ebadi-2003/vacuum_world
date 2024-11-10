@@ -40,7 +40,6 @@ class environment:
         else:
             return False
 
-
 class env_fullyObs_deterministic_static(environment):
     def perceive(self):
         return {

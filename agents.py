@@ -474,19 +474,222 @@ class ag_noPositionSensor_deterministic_dynamic(agent):
 
 
 class ag_noPositionSensor_stochasticInMove_static(agent):
-    pass
+    def ran_act(self):
+        x = random.randint(1, 4)
+        if x == 1:
+            return "up"
+        elif x == 2:
+            return "down"
+        elif x == 3:
+            return "right"
+        else:
+            return "left"
+
+    def run(self):
+        self.status()
+        last_move = None
+        first_act = True
+
+        while not all(value == "clean" for value in self.environment.rooms.values()):
+            perception = self.environment.perceive()
+            cleanliness = perception.get("cleanliness", None)
+
+            # Cleaning action
+            if cleanliness == 'dirty':
+                self.clean()
+                self.f4 += 1
+                if all(value == "clean" for value in self.environment.rooms.values()):
+                    self.f5 = list(self.environment.rooms.values()).count("dirty")
+                    self.status()
+                    print("----------FINISH-----------")
+                    break
+
+            if random.random() > 0.2:
+                if first_act:
+                    ran_chose = random.randint(1, 2)
+                    if ran_chose == 1:
+                        last_move = self.move_right()
+                    else:
+                        last_move = self.move_up()
+                    self.environment.move(last_move)
+                    first_act = False
+                else:
+                    if last_move == "right":
+                        last_move = self.move_up()
+                    elif last_move == "up":
+                        last_move = self.move_left()
+                    elif last_move == "left":
+                        last_move = self.move_down()
+                    else:
+                        last_move = self.move_right()
+                    self.environment.move(last_move)
+            else:
+                print("act random")
+                last_move = self.ran_act()
+                success = self.environment.move(last_move)
+                if not success:
+                    self.f2 += 1
+                    print("hit the wall")
+
+            self.f5 = list(self.environment.rooms.values()).count("dirty")
+            self.status()
+
+        else:
+            print("----------FINISH-----------")
 
 
 class ag_noPositionSensor_stochasticInMove_dynamic(agent):
-    pass
+    def ran_act(self):
+        x = random.randint(1, 4)
+        if x == 1:
+            return "up"
+        elif x == 2:
+            return "down"
+        elif x == 3:
+            return "right"
+        else:
+            return "left"
 
+    def run(self):
+        self.status()
+        last_move = None
+        mistake = [None]
+        first_act = True
+
+        while not all(value == "clean" for value in self.environment.rooms.values()):
+            perception = self.environment.perceive()
+            cleanliness = perception.get("cleanliness", None)
+
+            if cleanliness == 'dirty':
+                self.clean()
+                self.f4 += 1
+                if all(value == "clean" for value in self.environment.rooms.values()):
+                    self.f5 = list(self.environment.rooms.values()).count("dirty")
+                    self.status()
+                    print("----------FINISH-----------")
+                    break
+
+            if random.random() > 0.2:
+                if first_act:
+                    ran_chose = random.randint(1, 2)
+                    if ran_chose == 1:
+                        last_move = "right"
+                    else:
+                        last_move = "up"
+                    first_act = False
+                else:
+                    if last_move == "right":
+                        last_move = "up"
+                    elif last_move == "up":
+                        last_move = "left"
+                    elif last_move == "left":
+                        last_move = "down"
+                    else:
+                        last_move = "right"
+
+                success = self.environment.move(last_move)
+                if success:
+                    mistake = [None]
+                else:
+                    self.f2 += 1
+                    mistake.append(last_move)
+                    print("hit the wall")
+                    print(f"{last_move} was mistake")
+            else:
+                print("act random")
+                movement = None
+                while movement in mistake:
+                    movement = self.ran_act()
+                success = self.environment.move(movement)
+                if not success:
+                    self.f2 += 1
+                    mistake.append(movement)
+                    print("hit the wall")
+                    print(f"{movement} was mistake")
+
+            self.f5 = list(self.environment.rooms.values()).count("dirty")
+            self.status()
+
+        else:
+            print("----------FINISH-----------")
 
 class ag_noPositionSensor_stochasticInVac_static(agent):
-    pass
+    def run(self):
+        self.status()
+        last_move = None
+
+        while not all(value == "clean" for value in self.environment.rooms.values()):
+
+            perception = self.environment.perceive()
+            cleanliness = perception["cleanliness"]
+
+            if cleanliness == 'dirty':
+                if random.random() > 0.2:
+                    self.clean()
+                    self.f4 += 1
+                    if all(value == "clean" for value in self.environment.rooms.values()):
+                        self.f5 = list(self.environment.rooms.values()).count("dirty")
+                        self.status()
+                        print("----------FINISH-----------")
+                        break
+                else:
+                    self.f3 += 1
+                    print("suction failed")
+
+            ran_chose = random.randint(1, 2)
+
+            if ran_chose == 1:
+                last_move = self.move_right()
+                self.environment.move(last_move)
+            else:
+                last_move = self.move_up()
+                self.environment.move(last_move)
+
+            self.f5 = list(self.environment.rooms.values()).count("dirty")
+            self.status()
+
+        else:
+            print("----------FINISH-----------")
+
 
 
 class ag_noPositionSensor_stochasticInVac_dynamic(agent):
-    pass
+    def run(self):
+        self.status()
+        last_move = None
+
+        while not all(value == "clean" for value in self.environment.rooms.values()):
+
+            perception = self.environment.perceive()
+            cleanliness = perception["cleanliness"]
+
+            if cleanliness == 'dirty':
+                if random.random() > 0.2:
+                    self.clean()
+                    self.f4 += 1
+                    if all(value == "clean" for value in self.environment.rooms.values()):
+                        self.f5 = list(self.environment.rooms.values()).count("dirty")
+                        self.status()
+                        print("----------FINISH-----------")
+                        break
+                else:
+                    self.f3 += 1
+                    print("suction failed")
+
+            ran_chose = random.randint(1, 2)
+
+            if ran_chose == 1:
+                last_move = self.move_right()
+                self.environment.move(last_move)
+            else:
+                last_move = self.move_up()
+                self.environment.move(last_move)
+
+            self.f5 = list(self.environment.rooms.values()).count("dirty")
+            self.status()
+
+        else:
+            print("----------FINISH-----------")
 
 
 class ag_noCleanSensor_deterministic_static(agent):
