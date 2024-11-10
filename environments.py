@@ -157,9 +157,6 @@ class env_noPositionSensor_deterministic_dynamic(environment):
 
 
 
-
-
-
 class env_noPositionSensor_stochasticInMove_static(environment):
     def perceive(self):
         return {
@@ -175,7 +172,6 @@ class env_noPositionSensor_stochasticInMove_dynamic(environment):
     def perceive(self):
 
         perception = {
-            'position': self.agent_position,
             'cleanliness': self.rooms[self.agent_position]
         }
 
@@ -191,7 +187,7 @@ class env_noPositionSensor_stochasticInVac_static(environment):
             'cleanliness': self.rooms[self.agent_position]
         }
    
-   
+
 class env_noPositionSensor_stochasticInVac_dynamic(environment):
     def dynamic_dirtying(self):
         for room in self.rooms:
