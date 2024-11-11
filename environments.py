@@ -10,9 +10,6 @@ class environment:
         }
         self.agent_position = (0, 0)
 
-    # def perceive(self):
-    #     pass
-
     def move(self, action):
         if action == "up" and self.agent_position == (0, 0):
             self.agent_position = (0, 1)
