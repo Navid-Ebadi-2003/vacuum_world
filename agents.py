@@ -1,5 +1,5 @@
 import random
-
+import time
 
 class agent:
 
@@ -48,9 +48,12 @@ class agent:
             return self.move_left()
 
     def status(self):
-        print(f"f1: {self.f1} | f2: {self.f2} | f3: {
-              self.f3} | f4: {self.f4} | f5: {self.f5}")
+        print(f"f1: {self.f1} | f2: {self.f2} | f3: { self.f3} | f4: {self.f4} | f5: {self.f5}")
 
+    def sleep(duration):
+        print("Robot is sleeping")
+        time.sleep(duration)
+        print("Robot woke up and is ready to continue.")
 
 class ag_fullyObs_deterministic_static(agent):
     def run(self):
