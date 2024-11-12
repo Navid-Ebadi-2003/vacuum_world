@@ -580,6 +580,7 @@ print("\n")
 
 
 print("-------noPositionSensor_stochasticInVac_dynamic-------")
+total_f1 = 0
 total_f2 = 0
 total_f3 = 0
 total_f4 = 0
