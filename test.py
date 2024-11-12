@@ -204,7 +204,7 @@ for i in range(0,100):
     total_f5 += agent.f5
 
 print("\n")
-print("average :")
+print("total :")
 print(f"Total f1: {total_f1}, Total f2: {total_f2}, Total f3: {total_f3}, Total f4: {total_f4}, Total f5: {total_f5}")
 print("\n")
 
@@ -228,7 +228,7 @@ for i in range(0,100):
     total_f5 += agent.f5
 
 print("\n")
-print("average :")
+print("total :")
 print(f"Total f1: {total_f1}, Total f2: {total_f2}, Total f3: {total_f3}, Total f4: {total_f4}, Total f5: {total_f5}")
 print("\n")
 
@@ -250,7 +250,7 @@ for i in range(0,100):
     total_f5 += agent.f5
 
 print("\n")
-print("average :")
+print("total :")
 print(f"Total f1: {total_f1}, Total f2: {total_f2}, Total f3: {total_f3}, Total f4: {total_f4}, Total f5: {total_f5}")
 print("\n")
 
@@ -273,7 +273,7 @@ for i in range(0,100):
     total_f5 += agent.f5
 
 print("\n")
-print("average :")
+print("total :")
 print(f"Total f1: {total_f1}, Total f2: {total_f2}, Total f3: {total_f3}, Total f4: {total_f4}, Total f5: {total_f5}")
 print("\n")
 
@@ -296,7 +296,7 @@ for i in range(0,100):
     total_f5 += agent.f5
 
 print("\n")
-print("average :")
+print("total :")
 print(f"Total f1: {total_f1}, Total f2: {total_f2}, Total f3: {total_f3}, Total f4: {total_f4}, Total f5: {total_f5}")
 print("\n")
 
@@ -319,7 +319,7 @@ for i in range(0,100):
     total_f5 += agent.f5
 
 print("\n")
-print("average :")
+print("total :")
 print(f"Total f1: {total_f1}, Total f2: {total_f2}, Total f3: {total_f3}, Total f4: {total_f4}, Total f5: {total_f5}")
 print("\n")
 
@@ -342,7 +342,7 @@ for i in range(0,100):
     total_f5 += agent.f5
 
 print("\n")
-print("average :")
+print("total :")
 print(f"Total f1: {total_f1}, Total f2: {total_f2}, Total f3: {total_f3}, Total f4: {total_f4}, Total f5: {total_f5}")
 print("\n")
 
@@ -365,7 +365,7 @@ for i in range(0,100):
     total_f5 += agent.f5
 
 print("\n")
-print("average :")
+print("total :")
 print(f"Total f1: {total_f1}, Total f2: {total_f2}, Total f3: {total_f3}, Total f4: {total_f4}, Total f5: {total_f5}")
 print("\n")
 
@@ -388,7 +388,7 @@ for i in range(0,100):
     total_f5 += agent.f5
 
 print("\n")
-print("average :")
+print("total :")
 print(f"Total f1: {total_f1}, Total f2: {total_f2}, Total f3: {total_f3}, Total f4: {total_f4}, Total f5: {total_f5}")
 print("\n")
 
@@ -410,7 +410,7 @@ for i in range(0,100):
     total_f5 += agent.f5
 
 print("\n")
-print("average :")
+print("total :")
 print(f"Total f1: {total_f1}, Total f2: {total_f2}, Total f3: {total_f3}, Total f4: {total_f4}, Total f5: {total_f5}")
 print("\n")
 
@@ -433,7 +433,7 @@ for i in range(0,100):
     total_f5 += agent.f5
 
 print("\n")
-print("average :")
+print("total :")
 print(f"Total f1: {total_f1}, Total f2: {total_f2}, Total f3: {total_f3}, Total f4: {total_f4}, Total f5: {total_f5}")
 print("\n")
 
@@ -456,7 +456,7 @@ for i in range(0,100):
     total_f5 += agent.f5
 
 print("\n")
-print("average :")
+print("total :")
 print(f"Total f1: {total_f1}, Total f2: {total_f2}, Total f3: {total_f3}, Total f4: {total_f4}, Total f5: {total_f5}")
 print("\n")
 
@@ -480,7 +480,7 @@ for i in range(0,100):
     total_f5 += agent.f5
 
 print("\n")
-print("average :")
+print("total :")
 print(f"Total f1: {total_f1}, Total f2: {total_f2}, Total f3: {total_f3}, Total f4: {total_f4}, Total f5: {total_f5}")
 print("\n")
 
@@ -504,7 +504,7 @@ for i in range(0,100):
     total_f5 += agent.f5
 
 print("\n")
-print("average :")
+print("total :")
 print(f"Total f1: {total_f1}, Total f2: {total_f2}, Total f3: {total_f3}, Total f4: {total_f4}, Total f5: {total_f5}")
 print("\n")
 
@@ -527,7 +527,7 @@ for i in range(0,100):
     total_f5 += agent.f5
 
 print("\n")
-print("average :")
+print("total :")
 print(f"Total f1: {total_f1}, Total f2: {total_f2}, Total f3: {total_f3}, Total f4: {total_f4}, Total f5: {total_f5}")
 print("\n")
 
@@ -550,7 +550,7 @@ for i in range(0,100):
     total_f5 += agent.f5
 
 print("\n")
-print("average :")
+print("total :")
 print(f"Total f1: {total_f1}, Total f2: {total_f2}, Total f3: {total_f3}, Total f4: {total_f4}, Total f5: {total_f5}")
 print("\n")
 
@@ -573,7 +573,7 @@ for i in range(0,100):
     total_f5 += agent.f5
 
 print("\n")
-print("average :")
+print("total :")
 print(f"Total f1: {total_f1}, Total f2: {total_f2}, Total f3: {total_f3}, Total f4: {total_f4}, Total f5: {total_f5}")
 print("\n")
 
@@ -595,6 +595,6 @@ for i in range(0,100):
     total_f5 += agent.f5
 
 print("\n")
-print("average :")
+print("total :")
 print(f"Total f1: {total_f1}, Total f2: {total_f2}, Total f3: {total_f3}, Total f4: {total_f4}, Total f5: {total_f5}")
 print("\n")
